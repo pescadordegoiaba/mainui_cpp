@@ -61,6 +61,8 @@ void CMenuOptions::_Init( void )
 		PC_AUDIO, UI_Audio_Menu, QMF_NOTIFY );
 	AddButton( L( "GameUI_Video" ), L( "Change screen size, video mode, gamme and glare reduction." ),
 		PC_VIDEO, UI_Video_Menu, QMF_NOTIFY );
+	AddButton( L( "Hud Settings" ), L( "Move, color and show the HUD and the chat." ),
+		PC_CUSTOMIZE, UI_HudSettings_Menu, QMF_NOTIFY );
 	AddButton( L( "Done" ), L( "Go back to the Main Menu." ),
 		PC_DONE, VoidCb( &CMenuOptions::Hide ), QMF_NOTIFY );
 }
