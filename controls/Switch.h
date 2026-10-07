@@ -41,6 +41,13 @@ public:
 	void AddSwitch( const char *text );
 
 	int GetState() { return m_iState; }
+	int GetSwitchCount() const { return m_switches.Count(); }
+	const char *GetSwitchName( int i ) const
+	{
+		if( !m_switches.IsValidIndex( i ) || !m_switches[i].name )
+			return "";
+		return m_switches[i].name;
+	}
 	void SetState( int state );
 
 	bool bMouseToggle;

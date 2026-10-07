@@ -55,6 +55,17 @@ if(ANDROID)
 	set(MAINUI_USE_STB TRUE)
 endif()
 
+set(IMGUI_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../imgui")
+target_sources(menu PRIVATE
+	${IMGUI_DIR}/imgui.cpp
+	${IMGUI_DIR}/imgui_draw.cpp
+	${IMGUI_DIR}/imgui_tables.cpp
+	${IMGUI_DIR}/imgui_widgets.cpp
+	${IMGUI_DIR}/backends/imgui_impl_opengl2.cpp)
+target_include_directories(menu PRIVATE ${IMGUI_DIR} ${IMGUI_DIR}/backends)
+find_package(OpenGL REQUIRED)
+target_link_libraries(menu PRIVATE OpenGL::GL)
+
 include_directories(${XASH_SDK}/common ${XASH_SDK}/engine ${XASH_SDK}/pm_shared ${XASH_SDK}/public . controls/ menus/ miniutl/ font/ model/)
 
 if(MSVC)
@@ -73,7 +84,7 @@ if(MAINUI_USE_CUSTOM_FONT_RENDER)
 			find_package(PkgConfig)
 			find_package(Freetype REQUIRED)
 			include_directories(${FREETYPE_INCLUDE_DIRS})
-			target_link_libraries(menu ${FREETYPE_LIBRARIES})
+			target_link_libraries(menu PRIVATE ${FREETYPE_LIBRARIES})
 			add_definitions(-DMAINUI_USE_FREETYPE)
 		endif()
 	endif()

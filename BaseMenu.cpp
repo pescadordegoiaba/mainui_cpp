@@ -21,6 +21,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "extdll_menu.h"
 #include "BaseMenu.h"
+#include "MenuImGui.h"
 #include "PicButton.h"
 #include "keydefs.h"
 #include "Utils.h"
@@ -683,6 +684,7 @@ void UI_UpdateMenu( float flTime )
 	uiStatic.enableAlphaFactor = enableAlphaFactor;
 
 	uiStatic.menu.Update();
+	MenuImGui_EndPass();
 }
 
 /*
@@ -700,6 +702,7 @@ void UI_KeyEvent( int key, int down )
 	if( key == K_MOUSE1 )
 	{
 		g_bCursorDown = !!down;
+		MenuImGui_Button( down );
 	}
 
 	clientActive = uiStatic.client.IsActive();
@@ -779,6 +782,7 @@ void UI_MouseMove( int x, int y )
 	// now menu uses absolute coordinates
 	uiStatic.cursorX = x;
 	uiStatic.cursorY = y;
+	MenuImGui_Mouse( x, y );
 
 	if( UI_CursorInRect( 1, 1, ScreenWidth - 1, ScreenHeight - 1 ))
 		uiStatic.mouseInRect = true;

@@ -58,6 +58,13 @@ public:
 	bool MoveView( int delta );
 	bool MoveCursor( int delta );
 	int GetCurrentIndex() { return iCurItem; }
+	CMenuBaseModel *GetModel() { return m_pModel; }
+	const char *HeaderText( int num ) const
+	{
+		if( num < 0 || num >= MAX_TABLE_COLUMNS || !szHeaderTexts[num] )
+			return "";
+		return szHeaderTexts[num];
+	}
 	void SetCurrentIndex( int idx );
 	int GetSortingColumn( void ) { return m_iSortingColumn; }
 	bool IsAscend( void ) { return m_bAscend; }

@@ -18,6 +18,7 @@ GNU General Public License for more details.
 #include "PicButton.h"
 #include "ItemsHolder.h"
 #include "Scissor.h"
+#include "MenuImGui.h"
 #include <string.h>
 
 CMenuItemsHolder::CMenuItemsHolder() :
@@ -308,6 +309,9 @@ void CMenuItemsHolder::SetInactive( bool inactive )
 void CMenuItemsHolder::Draw( )
 {
 	CMenuBaseItem *item;
+
+	if( IsWindow() && MenuImGui_Draw( this ) )
+		return;
 
 	// draw contents
 	FOR_EACH_VEC( m_pItems, i )
